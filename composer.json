@@ -1,0 +1,21 @@
+{
+  "name": "firestorm/test",
+  "description": "Test application",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Bill Westhead",
+      "email": "bill.westhead@digify.co.uk"
+    }
+  ],
+  "require-dev": {
+    "robmorgan/phinx": "^0.11.4",
+    "phpunit/phpunit": "5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Firestorm\\": "src/"
+    }
+  }
+}
