@@ -8,17 +8,16 @@ namespace Firestorm\Application\Repository;
  */
 class TestQuestionsRepository
 {
-    /** @var PDO $dbConn // todo: install ext-PDO */
+    /** @var \PDO $dbConn */
     protected $dbConn;
 
     /**
      * TestQuestionsRepository constructor.
-     * @param PDO $dbConn
      */
-    public function __construct($dbConn)
+    public function __construct()
     {
-        /** @var pdo dbConn */
-        $this->dbConn = $dbConn;
+        /** this would normally be passed by the Service Manager, new connection for brevity */
+//        $this->dbConn = new PDO('mysql:host=localhost;dbname=test', $testuser, $testpass);
     }
 
     /**
@@ -29,6 +28,19 @@ class TestQuestionsRepository
      */
     public function getNextQuestion($lastQuestionID)
     {
+        /** for brevity, we will return the same data each request */
+        return [
+            'question' => "What is your favourite colour?",
+            'answerChoices' =>
+            [
+                '1' => 'red',
+                '2' => 'green',
+                '3' => 'blue',
+                '4' => 'yellow',
+            ]
+        ];
+
+        // below are
         /** @var array $question - ideally this would be mapped to a Question Entity, array used for brevity. */
         $question = $this->dbConn
             ->query("SELECT * FROM `testQuestions` as tq WHERE `tq`.`quesrionID` = $lastQuestionID")->fetch();
@@ -39,7 +51,6 @@ class TestQuestionsRepository
          *
          * Fetch the question which has a higher sequence than the last question and retrieve all options,
          */
-        // ON `tqs`.`questionID` = `tq`.`questionID`
         $sql = <<<SQL
 SELECT * FROM `testQuestions` as tq
 INNER JOIN `testQuestionOptions` as tqs USING(`questionID`) 

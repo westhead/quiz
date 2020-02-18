@@ -1,25 +1,61 @@
 <?php
 
-$testOptions = [];
-
-/** @var array $tests will be available from IndexController->startAction();*/
-foreach ($tests as $test) {
-    /** NB: $test would normally be an entity with properties. Simple array used here for brevity */
-    $testOptions[] = '<option value=' . $test['id'] . '">' . $test['name'] . '</option>';
-}
-
-// todo: add Bootstrap for for Responder email and test option
-
 /** NB: this partial template would normally be rendered as part of the module layout. Simply HTML used here */
 ?>
-<html>
-<body>
-<div class="container">
-    <div class="row">
-        <form>
 
-        </form>
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6 offset-2">
+            <form>
+                <div id="testPanel">
+                    <div class="row">
+                        <div class="align-content-center">
+                            <p>Enter your email address and choose the test your would like to take.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enterEmail">Enter email</label>
+                        <input id="enterEmail" class="form-control" name="enterEmail" type="email"
+                               placeholder="enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="testChoice">Test Choice</label>
+                        <select name="testChoice" class="form-control" id="testChoice"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-4 offset-3 align-content-center">
+                        <label for="testButton"></label>
+                        <input type="button" class="btn btn-success form-control" name="testButton" id="testButton"
+                               value="Start Test" data-question="">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</body>
-</html>
+
+<script>
+    $(document).ready(function () {
+        let listSelect = $('#testChoice');
+        let testPanel = $('#testPanel');
+        let testButton = $('#testButton');
+
+        $.getJSON("/ajax/?action=test-list", function (data) {
+            $.each(data, function (index, testItem) {
+                listSelect.append('<option value=' + testItem.id + '">' + testItem.name + '</option>');
+            });
+        });
+
+        testButton.on('click', function (e, v) {
+            testButton.val('Next question');
+            testButton.data('question', 2);
+            testPanel.html('');
+
+            console.log(testButton.data('question'))
+        });
+    });
+</script>

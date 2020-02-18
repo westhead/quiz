@@ -19,6 +19,19 @@ class TestsRepository
      */
     public function getTestList()
     {
-        return json_decode(file_get_contents('../../../data/tests.json'));
+        return [
+            [
+                'id' => 1,
+                'name' => 'test 1',
+            ],
+            [
+                'id' => 2,
+                'name' => 'test 2',
+            ],
+            [
+                'id' => 3,
+                'name' => 'test 3',
+            ]
+        ];
     }
 }

@@ -42,12 +42,9 @@ class IndexController
      */
     public function startAction()
     {
-        /** Prepare variables needed in view */
-        $tests = $this->testsRepository->getTestList();
-        /** $tests would normally be an array of TestEntities but for brevity, array is used instead of mapper */
 
         /**
-         * NB: this would return a Framework View Renderer but for brevity we simply require the view.
+         * NB: this would return a Framework View Renderer but for brevity we simply require the contents.
          * A template library such as Twig or Blade could be used.
          */
         require "../../../view/application/index/start.phtml";
@@ -60,6 +57,6 @@ class IndexController
     {
         /** todo: duplicate comments when final */
 
-        require "../../../view/application/index/results.phtml";
+        require __DIR__ . "/../../../view/application/index/results.phtml";
     }
 }

@@ -1,28 +1,25 @@
 
 ### Preamble
 
-~This implementation uses a basic fusebox router for each controller in the absence of a routing library or framework.
-Two are used intentionally as each could be a separate module in a production system that could be routed through a 
-single Front Controller.~
-
-The Index Controller acts as a Front Controller to load the start and end views. The Ajax Controller simulates what 
-could be a separate API
+This implementation uses a basic fusebox router in the absence of a routing library or framework. The Index Controller 
+acts as a primary page Controller to load the start and end views. The Ajax Controller simulates what could be a 
+separate API.
 
 ### Setup
 
-Clone repo:
-// todo: add URL
+Clone repository: https://github.com/westhead/quiz.git
 
 From the project directory load libraries;
 `composer install`
 
 Modify `phinx,yml` with credentials for database.
-
 Initialise db; `vendor/bin/phinx migrate -e development`
+
+Alternatively, use data/structure.sql manually
 
 Launch application; `composer serve`
 
-Open in browser; `http://localhost:8080:`
+Open in browser; `http://localhost:8080/test/index.php?action=start`
 
 ### Summary
 

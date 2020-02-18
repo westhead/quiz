@@ -17,5 +17,11 @@
     "psr-4": {
       "Firestorm\\": "src/"
     }
+  },
+  "scripts": {
+    "serve": "php -S 0.0.0.0:8080 -t public_html"
+  },
+  "require": {
+    "ext-json": "*"
   }
 }
