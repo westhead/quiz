@@ -2,13 +2,15 @@
 
 namespace Firestorm\Application\Repository;
 
+use PDO;
+
 /**
  * Class TestQuestionsRepository
  * @package Firestorm\Application\Repository
  */
 class TestQuestionsRepository
 {
-    /** @var \PDO $dbConn */
+    /** @var PDO $dbConn */
     protected $dbConn;
 
     /**
@@ -31,12 +33,23 @@ class TestQuestionsRepository
         /** for brevity, we will return the same data each request */
         return [
             'question' => "What is your favourite colour?",
-            'answerChoices' =>
-            [
-                '1' => 'red',
-                '2' => 'green',
-                '3' => 'blue',
-                '4' => 'yellow',
+            'answerChoices' => [
+                [
+                    'value' => '1',
+                    'label' => 'red',
+                ],
+                [
+                    'value' => '2',
+                    'label' => 'green',
+                ],
+                [
+                    'value' => '3',
+                    'label' => 'blue',
+                ],
+                [
+                    'value' => '4',
+                    'label' => 'yellow',
+                ],
             ]
         ];
 

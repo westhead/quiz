@@ -55,7 +55,16 @@
             testButton.data('question', 2);
             testPanel.html('');
 
-            console.log(testButton.data('question'))
+            $.getJSON('/ajax/?action=next-question', function (data) {
+                testPanel.append('<h4>' + data.question + '</h4>');
+                $.each(data.answerChoices, function(index, choice) {
+                    testPanel.append(
+                        '<span class="col-6 answer-choice btn btn-outline-info" id="answer_choice_' + choice.value
+                        + '" data-choice="' + choice.value + '">' + choice.label + '</span>'
+                    );
+                });
+            })
         });
+
     });
 </script>
